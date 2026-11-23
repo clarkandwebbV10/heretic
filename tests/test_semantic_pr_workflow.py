@@ -41,7 +41,7 @@ class SemanticPullRequestWorkflowSecurityTests(unittest.TestCase):
         action_uses = re.findall(r"(?m)^      - uses: ([^\n]+)$", self.workflow)
         self.assertEqual(action_uses, ["amannn/action-semantic-pull-request@v6"])
         self.assertIn("GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}", self.workflow)
-        self.assertNotRegex(self.workflow, r"\bcheckout@|\b(?:run|wip|statuses):\b")
+        self.assertNotRegex(self.workflow, r"(?m)^\s*(?:- uses: actions/checkout@|run:|wip:|statuses:)")
 
 
 if __name__ == "__main__":
